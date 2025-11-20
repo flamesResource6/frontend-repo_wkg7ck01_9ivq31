@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 
-export default function ProductTable() {
+export default function ProductTable({ refreshKey = 0 }) {
   const baseUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000'
   const [products, setProducts] = useState([])
   const [taxRate, setTaxRate] = useState(0.1)
@@ -23,7 +23,7 @@ export default function ProductTable() {
     }
   }
 
-  useEffect(() => { load() }, [])
+  useEffect(() => { load() }, [refreshKey])
 
   const remove = async (id) => {
     try {
